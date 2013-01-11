@@ -2,9 +2,21 @@ language: scala
 scala:
   - 2.9.2
   - 2.9.1
+
 jdk:
   - openjdk6
   - openjdk7
 
-services:
-  - mongodb
+services: 
+  - memcache
+
+env:
+  - PLAY_VERSION=2.0.2
+before_script:
+  - wget http://download.playframework.org/releases/play-${PLAY_VERSION}.zip
+  - unzip -q play-${PLAY_VERSION}.zip
+script:
+  - play test
+ 
+notifications: 
+  email: false
