@@ -1,0 +1,11 @@
+@(loginForm:Form[LoginForm] , message: String)
+
+@main("Welcome to Play 2.0") {
+    
+   <form action="/login" method="post">
+   <input type="text" name="email" placeholder="Email" value="@loginForm("email").value"/>
+   <input type="password" name="password" placeholder="password" value="@loginForm("password").value"/>
+   <input type="submit" value="login"/>
+   </form>
+    
+}
