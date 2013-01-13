@@ -24,7 +24,7 @@ object Application extends Controller {
       "password" -> tuple(
         "main" -> text(minLength = 6),
         "confirm" -> text).verifying(
-          // Add an additional constraint: both passwords must match
+          //  Add an additional constraint: both passwords must match
           "Passwords don't match", passwords => passwords._1 == passwords._2)) {
         // Binding: Create a User from the mapping result (ignore the second password and the accept field)
         (email, passwords) => UserSignUpForm(email, passwords._1)
