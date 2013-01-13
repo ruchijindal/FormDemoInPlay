@@ -1,16 +1,13 @@
 language: scala
 scala:
   - 2.9.1
-  
-  
-jdk:
     
+jdk:    
     - openjdk7
 
 services:
   - mongodb
-  - memcache
-
+  
 env:
   - PLAY_VERSION=2.0
 
