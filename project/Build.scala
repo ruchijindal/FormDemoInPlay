@@ -8,7 +8,9 @@ object ApplicationBuild extends Build {
     val appVersion      = "1.0-SNAPSHOT"
 
     val appDependencies = Seq(
-      // Add your project dependencies here,
+       "com.novus" %% "salat" % "1.9.1",
+       "org.scalatest" %% "scalatest" % "1.7.2",
+       "org.specs2" %% "specs2" % "1.12.3" % "test"
     )
 
     val main = PlayProject(appName, appVersion, appDependencies, mainLang = SCALA).settings(
