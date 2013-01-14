@@ -13,11 +13,17 @@ case class LoginForm(email: String, password: String)
 case class UserSignUpForm(email: String, password: String)
 object Application extends Controller {
 
+  /**
+   * Login In Form
+   */
   val loginForm = Form(
     Forms.mapping(
       "email" -> email,
       "password" -> nonEmptyText(minLength = 6))(LoginForm.apply)(LoginForm.unapply))
 
+  /**
+   * Sign Up Form
+   */
   val signupForm: Form[UserSignUpForm] = Form(
     mapping(
       "email" -> email,
@@ -33,18 +39,30 @@ object Application extends Controller {
         user => Some(user.email, (user.password, ""))
       })
 
+  /**
+   * Redirect To index page
+   */
   def index = Action {
     Ok(views.html.index(loginForm, "Form Demo in Play2.0"))
   }
 
+  /**
+   * Redirect To Sign Up Page
+   */
   def siginUpForm = Action {
     Ok(views.html.signUpForm(signupForm, "Sign Up Form"))
   }
 
+  /**
+   * Show a simple message
+   */
   def printMessage = Action {
     Ok("This is my message")
   }
 
+  /**
+   * Authenticate User For Login
+   */
   def authenticateUser = Action { implicit request =>
     loginForm.bindFromRequest.fold(
       errors => BadRequest(views.html.index(errors, "There is some error")),
@@ -61,7 +79,9 @@ object Application extends Controller {
       })
 
   }
-
+  /**
+   * Register a new User
+   */
   def createUser = Action { implicit request =>
     signupForm.bindFromRequest.fold(
       errors => BadRequest(views.html.signUpForm(errors, "There is some error")),
